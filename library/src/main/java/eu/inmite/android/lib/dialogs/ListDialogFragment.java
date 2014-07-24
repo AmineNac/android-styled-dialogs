@@ -2,6 +2,7 @@ package eu.inmite.android.lib.dialogs;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,8 @@ import android.widget.ListAdapter;
 public class ListDialogFragment extends BaseDialogFragment {
 
     private static String ARG_ITEMS = "items";
+
+    protected int mListItemLayoutId;
 
     public static SimpleListDialogBuilder createBuilder(Context context,
                                                         FragmentManager fragmentManager) {
@@ -119,6 +122,13 @@ public class ListDialogFragment extends BaseDialogFragment {
     protected Builder build(Builder builder) {
         builder = super.build(builder);
 
+        final TypedArray a = getActivity().getTheme()
+                                          .obtainStyledAttributes(null, R.styleable.DialogStyle, R.attr.sdlDialogStyle,
+                                                             0);
+
+        mListItemLayoutId = a.getResourceId(R.styleable.DialogStyle_listItemLayout, R.layout.dialog_list_item);
+        a.recycle();
+
         final String title = getTitle();
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title);
@@ -136,8 +146,8 @@ public class ListDialogFragment extends BaseDialogFragment {
         final String[] items = getItems();
         if (items != null && items.length > 0) {
             ListAdapter adapter = new ArrayAdapter<String>(getActivity(),
-                    R.layout.dialog_list_item,
-                    R.id.list_item_text,
+                    mListItemLayoutId,
+                    R.id.sdl__list_item,
                     items);
 
             builder.setItems(adapter, 0, new AdapterView.OnItemClickListener() {

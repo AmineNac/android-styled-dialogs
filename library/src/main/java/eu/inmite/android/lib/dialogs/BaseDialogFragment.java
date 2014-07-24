@@ -201,6 +201,10 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
         private int mListItemBackgroundColorFocused;
 
+        protected int mButtonLayoutId;
+        protected int mMessageLayoutId;
+        protected int mTitleLayoutId;
+
         private final static int[] pressedState = {android.R.attr.state_pressed};
 
         private final static int[] focusedState = {android.R.attr.state_focused};
@@ -338,6 +342,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
             final TypedArray a = mContext.getTheme()
                                          .obtainStyledAttributes(null, R.styleable.DialogStyle, R.attr.sdlDialogStyle,
                                                                  0);
+
+            mButtonLayoutId = a.getResourceId(R.styleable.DialogStyle_buttonLayout, R.layout.dialog_part_button);
+            mMessageLayoutId = a.getResourceId(R.styleable.DialogStyle_messageLayout, R.layout.dialog_part_message);
+            mTitleLayoutId = a.getResourceId(R.styleable.DialogStyle_titleLayout, R.layout.dialog_part_title);
+
             mTitleTextColor = a
                     .getColor(R.styleable.DialogStyle_titleTextColor, defaultTitleTextColor);
             mTitleSeparatorColor = a.getColor(R.styleable.DialogStyle_titleSeparatorColor,
@@ -387,7 +396,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
             LinearLayout content = (LinearLayout) v.findViewById(R.id.sdl__content);
 
             if (mMessage != null) {
-                View viewMessage = mInflater.inflate(R.layout.dialog_part_message, content, false);
+                View viewMessage = mInflater.inflate(mMessageLayoutId, content, false);
                 TextView tvMessage = (TextView) viewMessage.findViewById(R.id.sdl__message);
                 tvMessage.setTextColor(mMessageTextColor);
                 tvMessage.setText(mMessage);
@@ -429,7 +438,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
         }
 
         private View getDialogLayoutAndInitTitle() {
-            View v = mInflater.inflate(R.layout.dialog_part_title, mContainer, false);
+            View v = mInflater.inflate(mTitleLayoutId, mContainer, false);
             TextView tvTitle = (TextView) v.findViewById(R.id.sdl__title);
             View viewTitleDivider = v.findViewById(R.id.sdl__titleDivider);
             if (mTitle != null) {
@@ -482,7 +491,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
                 if (addDivider) {
                     addDivider(parent);
                 }
-                Button btn = (Button) mInflater.inflate(R.layout.dialog_part_button, parent, false);
+                Button btn = (Button) mInflater.inflate(mButtonLayoutId, parent, false);
                 btn.setId(R.id.sdl__negative_button);
                 btn.setText(mNegativeButtonText);
                 btn.setTextColor(mButtonTextColor);
@@ -505,7 +514,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
                 if (addDivider) {
                     addDivider(parent);
                 }
-                Button btn = (Button) mInflater.inflate(R.layout.dialog_part_button, parent, false);
+                Button btn = (Button) mInflater.inflate(mButtonLayoutId, parent, false);
                 btn.setId(R.id.sdl__positive_button);
                 btn.setText(mPositiveButtonText);
                 btn.setTextColor(mButtonTextColor);
@@ -528,7 +537,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
                 if (addDivider) {
                     addDivider(parent);
                 }
-                Button btn = (Button) mInflater.inflate(R.layout.dialog_part_button, parent, false);
+                Button btn = (Button) mInflater.inflate(mButtonLayoutId, parent, false);
                 btn.setId(R.id.sdl__neutral_button);
                 btn.setText(mNeutralButtonText);
                 btn.setTextColor(mButtonTextColor);

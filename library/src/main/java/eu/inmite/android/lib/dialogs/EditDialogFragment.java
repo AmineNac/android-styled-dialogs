@@ -2,6 +2,7 @@ package eu.inmite.android.lib.dialogs;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ public class EditDialogFragment extends BaseDialogFragment {
     private final static String      ARG_HINT            = "hint";
     private              FrameLayout mContainer          = null;
     private              EditText    mEditText           = null;
+    protected            int         mEditLayoutId       = -1;
 
     public static SimpleEditDialogBuilder createBuilder(Context context, FragmentManager fragmentManager) {
         return new SimpleEditDialogBuilder(context, fragmentManager);
@@ -39,10 +41,10 @@ public class EditDialogFragment extends BaseDialogFragment {
     }
 
     public static class SimpleEditDialogBuilder extends BaseDialogBuilder<SimpleEditDialogBuilder> {
-        private String       mTitle              = null;
-        private String       mHint               = null;
-        private String       mPositiveButtonText = null;
-        private String       mNegativeButtonText = null;
+        private String mTitle              = null;
+        private String mHint               = null;
+        private String mPositiveButtonText = null;
+        private String mNegativeButtonText = null;
 
         public SimpleEditDialogBuilder(Context context, FragmentManager fragmentManager) {
             super(context, fragmentManager, EditDialogFragment.class);
@@ -119,6 +121,12 @@ public class EditDialogFragment extends BaseDialogFragment {
     protected Builder build(Builder builder) {
         builder = super.build(builder);
 
+        final TypedArray a = getActivity().getTheme()
+                                     .obtainStyledAttributes(null, R.styleable.DialogStyle, R.attr.sdlDialogStyle,
+                                                             0);
+        mEditLayoutId = a.getResourceId(R.styleable.DialogStyle_editLayout, R.layout.dialog_part_edit);
+        a.recycle();
+
         final String title = getTitle();
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title);
@@ -146,7 +154,7 @@ public class EditDialogFragment extends BaseDialogFragment {
             });
         }
 
-        mContainer = (FrameLayout) LayoutInflater.from(getActivity()).inflate(R.layout.dialog_part_edit, null);
+        mContainer = (FrameLayout) LayoutInflater.from(getActivity()).inflate(mEditLayoutId, null);
         mEditText = (EditText) mContainer.findViewById(R.id.sdl__editext);
         mEditText.setInputType(InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
         mEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);

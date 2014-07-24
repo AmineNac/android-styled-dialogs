@@ -35,6 +35,13 @@
         <item name="listItemColorFocused">@color/sdl_button_focused_dark</item>
         <item name="listItemColorPressed">@color/sdl_button_pressed_dark</item>
         <item name="listItemSeparatorColor">@color/sdl_list_item_separator_dark</item>
+
+        <item name="listItemLayout">@layout/dialog_list_item</item>
+        <item name="buttonLayout">@layout/dialog_part_button</item>
+        <item name="editLayout">@layout/dialog_part_edit</item>
+        <item name="messageLayout">@layout/dialog_part_message</item>
+        <item name="progressLayout">@layout/dialog_part_progress</item>
+        <item name="titleLayout">@layout/dialog_part_title</item>
 	</style>
 
 	<style name="DialogStyleLight">
@@ -51,6 +58,13 @@
         <item name="listItemColorFocused">@color/sdl_button_focused_light</item>
         <item name="listItemColorPressed">@color/sdl_button_pressed_light</item>
         <item name="listItemSeparatorColor">@color/sdl_list_item_separator_light</item>
+
+        <item name="listItemLayout">@layout/dialog_list_item</item>
+        <item name="buttonLayout">@layout/dialog_part_button</item>
+        <item name="editLayout">@layout/dialog_part_edit</item>
+        <item name="messageLayout">@layout/dialog_part_message</item>
+        <item name="progressLayout">@layout/dialog_part_progress</item>
+        <item name="titleLayout">@layout/dialog_part_title</item>
 	</style>
 
 	<style name="SDL.Group">

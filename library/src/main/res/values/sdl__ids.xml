@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="sdl__positive_button" />
-    <item type="id" name="sdl__neutral_button" />
-    <item type="id" name="sdl__negative_button" />
+    <item type="id" name="sdl__positive_button"/>
+    <item type="id" name="sdl__neutral_button"/>
+    <item type="id" name="sdl__negative_button"/>
+
+    <item type="id" name="sdl__list_item"/>
+    <item type="id" name="sdl__editext"/>
+    <item type="id" name="sdl__message"/>
+    <item type="id" name="sdl__progress"/>
+    <item type="id" name="sdl__title"/>
+    <item type="id" name="sdl__titleDivider"/>
+    <item type="id" name="sdl__content"/>
+    <item type="id" name="sdl__contentPanel"/>
+    <item type="id" name="sdl__progressPanel"/>
+
 </resources>

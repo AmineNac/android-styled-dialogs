@@ -27,6 +27,7 @@ public class ProgressDialogFragment extends BaseDialogFragment {
 	protected final static String ARG_TITLE = "title";
 
 	protected int mRequestCode;
+    protected int mProgressLayoutId;
 
 	public static ProgressDialogBuilder createBuilder(Context context, FragmentManager fragmentManager) {
 		return new ProgressDialogBuilder(context, fragmentManager);
@@ -39,10 +40,11 @@ public class ProgressDialogFragment extends BaseDialogFragment {
 		final int defaultMessageTextColor = getResources().getColor(R.color.sdl_message_text_dark);
 		final TypedArray a = getActivity().getTheme().obtainStyledAttributes(null, R.styleable.DialogStyle, R.attr.sdlDialogStyle, 0);
 		final int messageTextColor = a.getColor(R.styleable.DialogStyle_messageTextColor, defaultMessageTextColor);
+        mProgressLayoutId = a.getResourceId(R.styleable.DialogStyle_progressLayout, R.layout.dialog_part_progress);
 		a.recycle();
 
 		final LayoutInflater inflater = builder.getLayoutInflater();
-		final View view = inflater.inflate(R.layout.dialog_part_progress, null, false);
+		final View view = inflater.inflate(mProgressLayoutId, null, false);
 		final TextView tvMessage = (TextView) view.findViewById(R.id.sdl__message);
 		tvMessage.setText(getArguments().getString(ARG_MESSAGE));
 		tvMessage.setTextColor(messageTextColor);

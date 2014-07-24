@@ -6,7 +6,7 @@
 
     <TextView
         style="@style/SDL.TextView.Message"
-        android:id="@+id/list_item_text"
+        android:id="@id/sdl__list_item"
         android:clickable="false"
         android:focusable="false" />
 </LinearLayout>
