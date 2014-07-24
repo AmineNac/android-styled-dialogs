@@ -34,6 +34,8 @@ public class ProgressDialogFragment extends BaseDialogFragment {
 
 	@Override
 	protected Builder build(Builder builder) {
+        builder = super.build(builder);
+
 		final int defaultMessageTextColor = getResources().getColor(R.color.sdl_message_text_dark);
 		final TypedArray a = getActivity().getTheme().obtainStyledAttributes(null, R.styleable.DialogStyle, R.attr.sdlDialogStyle, 0);
 		final int messageTextColor = a.getColor(R.styleable.DialogStyle_messageTextColor, defaultMessageTextColor);

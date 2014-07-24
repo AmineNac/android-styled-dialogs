@@ -21,25 +21,17 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Toast;
+import eu.inmite.android.lib.dialogs.*;
 
 import java.text.DateFormat;
 import java.util.Date;
-
-import eu.inmite.android.lib.dialogs.DatePickerDialogFragment;
-import eu.inmite.android.lib.dialogs.IDateDialogListener;
-import eu.inmite.android.lib.dialogs.IListDialogListener;
-import eu.inmite.android.lib.dialogs.ISimpleDialogCancelListener;
-import eu.inmite.android.lib.dialogs.ISimpleDialogListener;
-import eu.inmite.android.lib.dialogs.ListDialogFragment;
-import eu.inmite.android.lib.dialogs.ProgressDialogFragment;
-import eu.inmite.android.lib.dialogs.SimpleDialogFragment;
-import eu.inmite.android.lib.dialogs.TimePickerDialogFragment;
 
 public class MyActivity extends FragmentActivity implements
         ISimpleDialogListener,
         IDateDialogListener,
         ISimpleDialogCancelListener,
-        IListDialogListener {
+        IListDialogListener,
+        IEditDialogListener {
 
     public static final int THEME_DEFAULT_DARK = 0;
 
@@ -165,6 +157,18 @@ public class MyActivity extends FragmentActivity implements
 					.show();
 			}
 			});
+
+        findViewById(R.id.edit_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditDialogFragment
+                        .createBuilder(MyActivity.this, getSupportFragmentManager())
+                        .setTitle(android.R.string.dialog_alert_title)
+                        .setPositiveButtonText(android.R.string.ok)
+                        .setNegativeButtonText(android.R.string.cancel)
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -260,5 +264,12 @@ public class MyActivity extends FragmentActivity implements
                 setTheme(R.style.CustomLightTheme);
                 break;
         }
+    }
+
+    // IEditDialogListener
+
+    @Override
+    public void onTextEntered(String value) {
+        Toast.makeText(this, value, Toast.LENGTH_LONG).show();
     }
 }

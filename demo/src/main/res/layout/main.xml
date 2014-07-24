@@ -77,5 +77,10 @@
 			style="@style/Button"
 			android:id="@+id/date_picker"
 			android:text="Date Picker"/>
+
+        <Button
+                style="@style/Button"
+                android:id="@+id/edit_text"
+                android:text="Dialog with text input"/>
 	</LinearLayout>
 </ScrollView>

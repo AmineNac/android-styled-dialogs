@@ -117,6 +117,8 @@ public class ListDialogFragment extends BaseDialogFragment {
 
     @Override
     protected Builder build(Builder builder) {
+        builder = super.build(builder);
+
         final String title = getTitle();
         if (!TextUtils.isEmpty(title)) {
             builder.setTitle(title);

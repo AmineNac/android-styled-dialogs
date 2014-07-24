@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <EditText
+            android:id="@+id/sdl__editext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/grid_4"
+            android:layout_marginRight="@dimen/grid_4"
+            android:layout_marginTop="@dimen/grid_2"
+            android:layout_marginBottom="@dimen/grid_2"
+            android:layout_gravity="center"
+            style="@style/SDL.EditText"/>
+
+</FrameLayout>
+
